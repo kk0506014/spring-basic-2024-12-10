@@ -2,6 +2,7 @@ package com.ll.basic.domain.home.home.controller;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,8 +12,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
     private int age = 22;
+    private final List<Integer> ages;
 
     @GetMapping("/")
     @ResponseBody
@@ -138,6 +141,12 @@ public class HomeController {
                 .collect(Collectors.joining("\n"));
 
         return "<ul style=\"font-weight: bold; color: red;\">\n" + lis + "\n</ul>";
+    }
+
+    @GetMapping("/ages")
+    @ResponseBody
+    public List<Integer> ages() {
+        return ages;
     }
 }
 
